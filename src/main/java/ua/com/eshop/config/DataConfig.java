@@ -23,11 +23,10 @@ public class DataConfig {
     @Bean
     public DataSource dataSource() {
         HikariConfig hikariConfig = new HikariConfig();
-        hikariConfig.setDataSourceClassName("com.mysql.jdbc.Driver");
-        hikariConfig.setJdbcUrl("jdbc:mysql://localhost/eshopdb?createDatabaseIfNoExist=true");
+        hikariConfig.setDriverClassName("com.mysql.jdbc.Driver");
+        hikariConfig.setJdbcUrl("jdbc:mysql://localhost:3306/eshopdb");
         hikariConfig.setUsername("root");
         hikariConfig.setPassword("root");
-
         hikariConfig.setMaximumPoolSize(5);
         hikariConfig.setPoolName("springHikariCP");
 
@@ -51,12 +50,12 @@ public class DataConfig {
 
     @Bean("entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean  factoryBean = new LocalContainerEntityManagerFactoryBean();
-        Properties properties = new Properties();
-        properties.put("hibernate.hbm2ddl.auto", "update");
+        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(dataSource());
         factoryBean.setJpaVendorAdapter(vendorAdapter());
         factoryBean.setPackagesToScan("ua.com.eshop.entity");
+        Properties properties = new Properties();
+        properties.put("hibernate.hbm2ddl.auto", "update");
         factoryBean.setJpaProperties(properties);
         return factoryBean;
     }

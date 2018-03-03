@@ -1,12 +1,15 @@
 package ua.com.eshop.entity;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ua.com.eshop.entity.models.Roles;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -16,9 +19,16 @@ public class Customer implements UserDetails{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private Roles roleUser = Roles.ROLE_USER;
+//    private Roles roleAdnin = Roles.ROLE_ADMIN;
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(roleUser.name()));
+//        authorities.add(new SimpleGrantedAuthority(roleAdnin.name()));
+        return authorities;
     }
 
     private String password;
