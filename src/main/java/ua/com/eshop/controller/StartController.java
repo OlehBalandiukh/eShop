@@ -25,13 +25,32 @@ public class StartController {
     @PostMapping("/signup")
     public String saveUser(
             @RequestParam String emailUp,
-            @RequestParam String passwordUp
+            @RequestParam String passwordUp,
+            @RequestParam String firstName,
+            @RequestParam String lastName,
+            @RequestParam String mobileNumber
     ) {
         Customer customer = new Customer();
+
         customer.setUsername(emailUp);
         customer.setPassword(passwordEncoder.encode(passwordUp));
+//        customer.setEmail(emailUp);
+        customer.setFirstName(firstName);
+        customer.setLastName(lastName);
+        customer.setMobileNumber(mobileNumber);
+
 
         customerService.save(customer);
-        return "redirect:/login";
+        return "redirect:/";
     }
+
+//    @GetMapping("/index")
+//    public String index(){
+//        return "index";
+//    }
+
+//    @GetMapping("/xToLoginPage")
+//    public String loginPage(){
+//        return "loginPage";
+//    }
 }

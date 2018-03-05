@@ -58,6 +58,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                 .and()
                 .formLogin()
+                .loginPage("/index")
+                .usernameParameter("emailIn")
+                .passwordParameter("passwordIn")
+                .loginProcessingUrl("/login")
+//                .failureForwardUrl("/error")
+//                .successForwardUrl("/shop")
                 .and()
                 .csrf();
     }

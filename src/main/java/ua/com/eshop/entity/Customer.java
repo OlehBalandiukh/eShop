@@ -22,6 +22,32 @@ public class Customer implements UserDetails{
     private Roles roleUser = Roles.ROLE_USER;
 //    private Roles roleAdnin = Roles.ROLE_ADMIN;
 
+//    private String email;
+    private String firstName;
+    private String lastName;
+    private String mobileNumber;
+    private String password;
+    private String username;
+    private boolean accountNonExpired = true;
+    private boolean accountNonLocked = true;
+    private boolean credentialsNonExpired = true;
+    private boolean enabled = true;
+
+//    public String getEmail() {
+//        return email;
+//    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -31,40 +57,34 @@ public class Customer implements UserDetails{
         return authorities;
     }
 
-    private String password;
     @Override
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
-    private String username;
     @Override
     public String getUsername() {
-        return this.username;
+        return username;
     }
 
-    private boolean accountNonExpired = true;
     @Override
     public boolean isAccountNonExpired() {
-        return this.accountNonExpired;
+        return accountNonExpired;
     }
 
-    private boolean accountNonLocked = true;
     @Override
     public boolean isAccountNonLocked() {
-        return this.accountNonLocked;
+        return accountNonLocked;
     }
 
-    private boolean credentialsNonExpired = true;
     @Override
     public boolean isCredentialsNonExpired() {
-        return this.credentialsNonExpired;
+        return credentialsNonExpired;
     }
 
-    private boolean enabled = true;
     @Override
     public boolean isEnabled() {
-        return this.enabled;
+        return enabled;
     }
 
     public Customer() {
@@ -93,4 +113,21 @@ public class Customer implements UserDetails{
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
+
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
 }

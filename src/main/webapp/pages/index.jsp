@@ -1,3 +1,4 @@
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,14 +121,17 @@
 </head>
 <body>
 
+<security:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+    <h1>Shop</h1>
+</security:authorize>
 <button onclick="document.getElementById('idin').style.display='block'" style="width:auto;">Login</button>
 <button onclick="document.getElementById('idup').style.display='block'" style="width:auto;">Sign Up</button>
 
 <div id="idin" class="modal">
 
-    <form class="modal-content animate" action="/login" method="post">
+    <form class="modal-content animate" action="/login" method="post" id="formin">
         <div class="imgcontainer">
-            <span onclick="document.getElementById('idin').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <span onclick="document.getElementById('idin').style.display='none', document.getElementById('formin').reset()" class="close" title="Close Modal">&times;</span>
         </div>
 
         <div class="container">
@@ -150,7 +154,7 @@
         </div>
 
         <div class="container" style="background-color:#f1f1f1">
-            <button type="button" onclick="document.getElementById('idin').style.display='none'" class="cancelbtn">Cancel</button>
+            <button type="button" onclick="document.getElementById('idin').style.display='none', document.getElementById('formin').reset()" class="cancelbtn">Cancel</button>
         </div>
     </form>
 </div>
@@ -159,7 +163,7 @@
 
     <form class="modal-content animate" action="/signup" method="post" id="formup">
         <div class="imgcontainer">
-            <span onclick="document.getElementById('idup').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <span onclick="document.getElementById('idup').style.display='none', document.getElementById('formup').reset()" class="close" title="Close Modal">&times;</span>
         </div>
 
         <div class="container">
@@ -195,7 +199,7 @@
         </div>
 
         <div class="container" style="background-color:#f1f1f1">
-            <button type="button" onclick="document.getElementById('idup').style.display='none'" class="cancelbtn">Cancel</button>
+            <button type="button" onclick="document.getElementById('idup').style.display='none', document.getElementById('formup').reset()" class="cancelbtn">Cancel</button>
         </div>
     </form>
 </div>
